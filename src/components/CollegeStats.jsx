@@ -4,7 +4,7 @@ import { Users, BookOpen, Award, TrendingUp } from 'lucide-react';
 import { useCollege } from '../contexts/CollegeContext';
 
 const StatsCard = ({ icon: Icon, title, value, change, changeType, color }) => (
-  <div className="card p-6 bg-background hover:shadow-lg transition-all duration-300 border-l-4" style={{ borderLeftColor: color }}>
+  <div className="card p-6 bg-background border-2 border-black shadow-2xl hover:shadow-dark-xl transition-all duration-300 border-l-4" style={{ borderLeftColor: color }}>
     <div className="flex items-center justify-between">
       <div>
         <p className="text-text-secondary text-sm font-medium">{title}</p>
