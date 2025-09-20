@@ -58,7 +58,9 @@ const StudentDashboard = () => {
         
         <main className="p-4 md:p-6 lg:p-8">
           <div className="fade-in" style={{ marginTop: '64px' }}>
-            <Outlet />
+            <div className="card bg-card border-2 border-black shadow-2xl p-4">
+              <Outlet />
+            </div>
           </div>
         </main>
       </div>
