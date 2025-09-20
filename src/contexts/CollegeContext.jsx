@@ -6,7 +6,7 @@ const CollegeContext = createContext(undefined);
 
 // The 'colleges' array is a standard JavaScript array of objects.
 const colleges = [
-  { id: 'stanford', name: 'Stanford University', code: 'STAN', theme: 'cardinal' },
+  { id: 'stanford', name: 'Stanford University', code: '', theme: 'cardinal' },
   { id: 'mit', name: 'MIT - Massachusetts Institute of Technology', code: 'MIT', theme: 'tech' },
   { id: 'harvard', name: 'Harvard University', code: 'HARV', theme: 'crimson' },
   { id: 'berkeley', name: 'UC Berkeley', code: 'UCB', theme: 'blue' },

@@ -19,7 +19,7 @@ const Button = ({
     lg: 'px-8 py-4 text-lg'
   };
 
-  const classes = `${baseClass} ${variantClass} ${sizeClasses[size]} ${className} ${
+  const classes = `${baseClass} ${variantClass} ${sizeClasses[size]} border-white ${className} ${
     loading || disabled ? 'opacity-50 cursor-not-allowed' : ''
   }`;
 

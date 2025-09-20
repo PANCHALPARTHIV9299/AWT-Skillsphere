@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({ items, collapsed, basePath, className }) => {
   return (
-    <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${className}`}>
-      <nav className="sidebar-nav">
+      <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${className}`}>
+        <nav className="sidebar-nav" style={{ marginTop: '96px' }}>
         {items.map((item) => (
           <NavLink
             key={item.path}

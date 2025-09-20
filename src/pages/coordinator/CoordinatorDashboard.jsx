@@ -18,7 +18,7 @@ const CoordinatorDashboard = () => {
   ];
 
   return (
-    <div className="dashboard-layout">
+    <div className="dashboard-layout bg-background min-h-screen">
       <Sidebar 
         items={sidebarItems}
         collapsed={sidebarCollapsed}

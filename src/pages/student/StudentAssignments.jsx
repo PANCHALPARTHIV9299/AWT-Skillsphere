@@ -149,7 +149,7 @@ const StudentAssignments = () => {
       <Card title="Upcoming Assignments" className="mb-6">
         <div className="space-y-4">
           {upcomingAssignments.map((assignment) => (
-            <div key={assignment.id} className={`p-4 border rounded-lg ${getPriorityColor(assignment.priority)}`}>
+            <div key={assignment.id} className={`p-4 border rounded-lg shadow-md bg-card ${getPriorityColor(assignment.priority)}`}>
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-start space-x-3">
                   {getStatusIcon(assignment.status)}
@@ -188,7 +188,7 @@ const StudentAssignments = () => {
       <Card title="Completed Assignments">
         <div className="space-y-4">
           {completedAssignments.map((assignment) => (
-            <div key={assignment.id} className="p-4 border rounded-lg bg-zinc-100/50">
+            <div key={assignment.id} className="p-4 border rounded-lg shadow-md bg-card">
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-start space-x-3">
                   {getStatusIcon(assignment.status)}

@@ -69,7 +69,10 @@ const StudentProfile = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card title="Personal Information">
+        <Card 
+          title="Personal Information" 
+          className="border-2 border-black bg-gray-100 shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+        >
           <div className="space-y-4">
             <div className="grid grid-cols-3 gap-4">
               <FormInput
@@ -125,7 +128,10 @@ const StudentProfile = () => {
           </div>
         </Card>
 
-        <Card title="Academic Information">
+        <Card 
+          title="Academic Information" 
+          className="border-2 border-black bg-gray-100 shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+        >
           <div className="space-y-4">
             <FormInput
               label="Enrollment Number"

@@ -20,6 +20,7 @@ import StudentCourses from "./pages/student/StudentCourses";
 import StudentAssignments from "./pages/student/StudentAssignments";
 import StudentProgress from "./pages/student/StudentProgress";
 import StudentMessages from "./pages/student/StudentMessages";
+import StudentEvents from "./pages/student/StudentEvents";
 import StudentAttendance from "./pages/student/StudentAttendance";
 
 // Teacher Dashboard
@@ -28,6 +29,7 @@ import TeacherOverview from "./pages/teacher/TeacherOverview";
 import TeacherCourses from "./pages/teacher/TeacherCourses";
 import TeacherStudents from "./pages/teacher/TeacherStudents";
 import TeacherAttendance from "./pages/teacher/TeacherAttendance";
+import TeacherUploadEvent from "./pages/teacher/TeacherUploadEvent";
 
 // Coordinator Dashboard
 import CoordinatorDashboard from "./pages/coordinator/CoordinatorDashboard";
@@ -66,6 +68,7 @@ const App = () => (
                 <Route path="progress" element={<StudentProgress />} />
                 <Route path="attendance" element={<StudentAttendance />} />
                 <Route path="messages" element={<StudentMessages />} />
+                <Route path="events" element={<StudentEvents />} />
               </Route>
 
               {/* Teacher Dashboard Routes */}
@@ -77,6 +80,7 @@ const App = () => (
                 <Route path="assignments" element={<StudentAssignments />} />
                 <Route path="attendance" element={<TeacherAttendance />} />
                 <Route path="students" element={<TeacherStudents />} />
+                <Route path="upload-event" element={<TeacherUploadEvent />} />
               </Route>
 
               {/* Coordinator Dashboard Routes */}

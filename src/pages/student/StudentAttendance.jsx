@@ -62,7 +62,7 @@ const StudentAttendance = () => {
     : attendanceData.filter(record => record.course === selectedCourse);
 
   return (
-    <div className="space-y-6">
+  <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
         <Calendar className="h-6 w-6 text-primary" />
@@ -75,62 +75,49 @@ const StudentAttendance = () => {
       </div>
 
       {/* Overall Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="w-full">
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-success/10 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-success" />
+          <CardContent className="p-4 rounded-lg bg-[var(--card)]">
+            <div className="flex flex-row flex-wrap justify-between items-center gap-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-success/10 rounded-lg">
+                  <CheckCircle className="h-5 w-5 text-success" />
+                </div>
+                <div>
+                  <p className="text-sm text-text-secondary">Overall Attendance</p>
+                  <p className="text-2xl font-bold text-success">{calculateAttendancePercentage()}%</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-text-secondary">Overall Attendance</p>
-                <p className="text-2xl font-bold text-success">{calculateAttendancePercentage()}%</p>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Clock className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-text-secondary">Total Classes</p>
+                  <p className="text-2xl font-bold">{attendanceData.length}</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Clock className="h-5 w-5 text-primary" />
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-success/10 rounded-lg">
+                  <CheckCircle className="h-5 w-5 text-success" />
+                </div>
+                <div>
+                  <p className="text-sm text-text-secondary">Classes Attended</p>
+                  <p className="text-2xl font-bold text-success">
+                    {attendanceData.filter(r => r.status === 'present' || r.status === 'late').length}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-text-secondary">Total Classes</p>
-                <p className="text-2xl font-bold">{attendanceData.length}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-success/10 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-success" />
-              </div>
-              <div>
-                <p className="text-sm text-text-secondary">Classes Attended</p>
-                <p className="text-2xl font-bold text-success">
-                  {attendanceData.filter(r => r.status === 'present' || r.status === 'late').length}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-destructive/10 rounded-lg">
-                <XCircle className="h-5 w-5 text-destructive" />
-              </div>
-              <div>
-                <p className="text-sm text-text-secondary">Classes Missed</p>
-                <p className="text-2xl font-bold text-destructive">
-                  {attendanceData.filter(r => r.status === 'absent').length}
-                </p>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-destructive/10 rounded-lg">
+                  <XCircle className="h-5 w-5 text-destructive" />
+                </div>
+                <div>
+                  <p className="text-sm text-text-secondary">Classes Missed</p>
+                  <p className="text-2xl font-bold text-destructive">
+                    {attendanceData.filter(r => r.status === 'absent').length}
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -193,7 +180,7 @@ const StudentAttendance = () => {
             {filteredAttendance.slice().reverse().map((record, index) => {
               const course = courses.find(c => c.id === record.course);
               return (
-                <div key={index} className="flex items-center justify-between p-3 bg-zinc-100 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-[var(--card)]">
                   <div className="flex items-center gap-3">
                     {getStatusIcon(record.status)}
                     <div>

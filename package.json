@@ -36,6 +36,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-react-swc": "^4.1.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -49,5 +50,13 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PANCHALPARTHIV9299/Skillsphere.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PANCHALPARTHIV9299/Skillsphere/issues"
+  },
+  "homepage": "https://github.com/PANCHALPARTHIV9299/Skillsphere#readme"
 }

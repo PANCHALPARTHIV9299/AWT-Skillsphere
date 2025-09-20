@@ -14,7 +14,7 @@ const FormInput = forwardRef(
         {type === 'select' && options ? (
           <select
             id={inputId}
-            className={`form-select ${error ? 'border-error' : ''} ${className}`}
+            className={`form-select border-white ${error ? 'border-error' : ''} ${className}`}
             ref={ref}
             {...props}
           >
@@ -29,7 +29,7 @@ const FormInput = forwardRef(
           <input
             id={inputId}
             type={type}
-            className={`form-input ${error ? 'border-error' : ''} ${className}`}
+            className={`form-input border-white ${error ? 'border-error' : ''} ${className}`}
             ref={ref}
             {...props}
           />

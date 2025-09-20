@@ -41,8 +41,8 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-100">
-      <Navbar />
+    <div className="min-h-screen bg-background">
+      <Navbar hideUserButton />
       
       {/* Hero Section with Animated Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -50,10 +50,10 @@ const Home = () => {
         <div className="absolute inset-0 animated-bg opacity-20"></div>
         <div className="absolute inset-0 hero-pattern"></div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-20 h-20 bg-primary/20 rounded-full floating-element hidden lg:block"></div>
-        <div className="absolute top-40 right-32 w-16 h-16 bg-accent/20 rounded-full floating-element hidden lg:block" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-primary/30 rounded-full floating-element hidden lg:block" style={{animationDelay: '4s'}}></div>
+  {/* Floating Elements */}
+  <div className="absolute top-20 left-20 w-20 h-20 bg-primary/40 dark:bg-primary/60 rounded-full floating-element" style={{opacity:0.7}}></div>
+  <div className="absolute top-40 right-32 w-16 h-16 bg-accent/40 dark:bg-accent/60 rounded-full floating-element" style={{animationDelay: '2s', opacity:0.7}}></div>
+  <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-primary/50 dark:bg-primary/70 rounded-full floating-element" style={{animationDelay: '4s', opacity:0.7}}></div>
         
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <div className="bounce-in">

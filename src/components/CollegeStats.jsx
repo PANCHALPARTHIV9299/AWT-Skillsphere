@@ -4,7 +4,7 @@ import { Users, BookOpen, Award, TrendingUp } from 'lucide-react';
 import { useCollege } from '../contexts/CollegeContext';
 
 const StatsCard = ({ icon: Icon, title, value, change, changeType, color }) => (
-  <div className="card p-6 hover:shadow-lg transition-all duration-300 border-l-4" style={{ borderLeftColor: color }}>
+  <div className="card p-6 bg-background hover:shadow-lg transition-all duration-300 border-l-4" style={{ borderLeftColor: color }}>
     <div className="flex items-center justify-between">
       <div>
         <p className="text-text-secondary text-sm font-medium">{title}</p>
@@ -85,7 +85,7 @@ const CollegeStats = () => {
   ];
 
   return (
-    <div className="space-y-6">
+  <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">
@@ -108,25 +108,25 @@ const CollegeStats = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card p-6">
+    <div className="card p-6">
           <h3 className="text-lg font-semibold mb-4">Recent Activities</h3>
           <div className="space-y-3">
             {/* Recent activity items... */}
-            <div className="flex items-center justify-between p-3 bg-zinc-100 rounded-lg">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--card)] shadow-md">
               <div>
                 <p className="font-medium">New Course: Advanced AI</p>
                 <p className="text-sm text-text-secondary">Computer Science Department</p>
               </div>
               <span className="text-xs text-text-muted">2 hours ago</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-zinc-100 rounded-lg">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--card)]">
               <div>
                 <p className="font-medium">Assignment Submitted</p>
                 <p className="text-sm text-text-secondary">Database Systems - 45 submissions</p>
               </div>
               <span className="text-xs text-text-muted">5 hours ago</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-zinc-100 rounded-lg">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-[var(--card)]">
               <div>
                 <p className="font-medium">New Faculty Joined</p>
                 <p className="text-sm text-text-secondary">Dr. Sarah Johnson - Mathematics</p>
@@ -136,7 +136,7 @@ const CollegeStats = () => {
           </div>
         </div>
 
-        <div className="card p-6">
+    <div className="card p-6">
           <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-3">
             {/* Quick action buttons... */}
@@ -161,6 +161,6 @@ const CollegeStats = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CollegeStats;

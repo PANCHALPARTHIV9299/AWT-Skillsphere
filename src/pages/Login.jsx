@@ -6,6 +6,12 @@ import FormInput from '../components/FormInput';
 import { useCollege } from '../contexts/CollegeContext';
 
 const Login = () => {
+  // Local storage for registered users
+  const getRegisteredUsers = () => {
+    const users = localStorage.getItem('registeredUsers');
+    return users ? JSON.parse(users) : [];
+  };
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,12 +23,12 @@ const Login = () => {
   const { setCurrentUser, colleges } = useCollege();
 
   const collegeOptions = [
-    { value: 'stanford', label: 'Stanford University' },
+    { value: 'Changa', label: 'Charusat University' },
     { value: 'mit', label: 'MIT - Massachusetts Institute of Technology' },
-    { value: 'harvard', label: 'Harvard University' },
-    { value: 'berkeley', label: 'UC Berkeley' },
-    { value: 'oxford', label: 'Oxford University' },
-    { value: 'cambridge', label: 'Cambridge University' }
+    { value: 'Ahemdabad', label: 'Nirma University' },
+    { value: 'Ahemdabad', label: 'PDEU' },
+    { value: 'Rajkot', label: 'Darshan University' },
+    { value: 'Ankleshwer', label: 'UPL University' }
   ];
 
   const handleInputChange = (e) => {
@@ -66,43 +72,28 @@ const Login = () => {
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
-      
-      // Find selected college
-      const selectedCollege = colleges.find(c => c.id === formData.college);
-      
-      // Determine user role and set current user
-      const email = formData.email.toLowerCase();
-      let role = 'student';
-      
-      if (email.includes('teacher')) {
-        role = 'teacher';
-      } else if (email.includes('admin') || email.includes('coordinator')) {
-        role = 'admin';
+      const registeredUsers = getRegisteredUsers();
+      const user = registeredUsers.find(
+        u => u.email === formData.email && u.password === formData.password && u.college === formData.college
+      );
+      if (!user) {
+        setErrors({ email: 'Invalid credentials or not registered' });
+        return;
       }
-      
-      if (selectedCollege) {
-        setCurrentUser({
-          id: '1',
-          name: email.split('@')[0].replace(/[0-9]/g, '').replace(/\./g, ' '),
-          email: formData.email,
-          role,
-          college: selectedCollege
-        });
-      }
-      
+      setCurrentUser(user);
       // Role-based routing
-      if (role === 'student') {
+      if (user.role === 'student') {
         navigate('/student');
-      } else if (role === 'teacher') {
+      } else if (user.role === 'teacher') {
         navigate('/teacher');
       } else {
         navigate('/coordinator');
       }
-    }, 1500);
+    }, 1000);
   };
 
   return (
-    <div className="page-container flex items-center justify-center py-12">
+    <div className="min-h-screen bg-background flex items-center justify-center py-12">
       <div className="form-container fade-in">
         <div className="text-center mb-8">
           <LogIn className="text-primary mx-auto mb-4" size={48} />
@@ -169,7 +160,7 @@ const Login = () => {
         </div>
 
         {/* Demo Credentials */}
-        <div className="mt-8 p-4 bg-zinc-100 rounded-lg border">
+        {/* <div className="mt-8 p-4 bg-background rounded-lg border">
           <h4 className="font-medium mb-2 text-sm">Demo Credentials by College:</h4>
           <div className="text-xs text-text-secondary space-y-2">
             <div>
@@ -185,7 +176,7 @@ const Login = () => {
               <p><strong>Admin:</strong> admin@mit.edu / password</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

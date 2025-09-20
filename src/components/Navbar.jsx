@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 import { useCollege } from '../contexts/CollegeContext';
 
-const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className }) => {
+const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className, hideUserButton }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
   const { currentUser } = useCollege();
@@ -15,21 +15,18 @@ const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className }) => {
   };
 
   return (
-    <nav className={`navbar ${className}`}>
+    <nav className={`navbar w-full fixed top-0 left-0 z-40 ${className}`} style={{ width: '100vw' }}>
       <div className="flex items-center space-x-4">
-        {showSidebarToggle && (
-          <button
-            onClick={onToggleSidebar}
-            className="btn-ghost p-2"
-          >
-            <Menu size={20} />
-          </button>
-        )}
+        {/* Sidebar toggle removed for fixed sidebar layout */}
         <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 mr-4">
+            <GraduationCap size={24} className="text-primary" />
+            <span className="text-lg font-bold text-primary">SkillSphere</span>
+          </div>
           {currentUser?.college && (
             <div className="flex items-center space-x-2 px-3 py-1 bg-primary/10 rounded-full">
               <GraduationCap size={16} className="text-primary" />
-              <span className="text-sm font-medium text-primary">{currentUser.college.code}</span>
+              {/* <span className="text-sm font-medium text-primary">{currentUser.college.code}</span> */}
             </div>
           )}
           <h1 className="text-xl font-bold text-primary">{title}</h1>
@@ -46,35 +43,46 @@ const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className }) => {
 
         <ThemeToggle />
 
-        <div className="relative">
-          <button
-            onClick={() => setShowUserMenu(!showUserMenu)}
-            className="btn-ghost p-2 flex items-center space-x-2"
-          >
-            <User size={20} />
-            <div className="hidden md:block text-left">
-              <div className="text-sm font-medium">{currentUser?.name || 'User'}</div>
-              <div className="text-xs text-text-secondary">{currentUser?.college?.name}</div>
-            </div>
-          </button>
-
-          {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50">
-              <div className="py-2">
-                <button className="w-full text-left px-4 py-2 hover:bg-zinc-100 transition-colors">
-                  Profile Settings
-                </button>
-                <button 
-                  onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-zinc-100 transition-colors flex items-center space-x-2 text-error"
-                >
-                  <LogOut size={16} />
-                  <span>Logout</span>
-                </button>
+        {!hideUserButton && (
+          <div className="relative">
+            <button
+              onClick={() => setShowUserMenu(!showUserMenu)}
+              className="btn-ghost p-2 flex items-center space-x-2"
+            >
+              <User size={20} />
+              <div className="hidden md:block text-left">
+                <div className="text-sm font-medium">{currentUser?.name || 'User'}</div>
+                <div className="text-xs text-text-secondary">{currentUser?.college?.name}</div>
               </div>
-            </div>
-          )}
-        </div>
+            </button>
+
+            {showUserMenu && (
+              <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50">
+                <div className="py-2">
+                  <button 
+                    className="w-full text-left px-4 py-2 hover:bg-zinc-100 transition-colors"
+                    onClick={() => {
+                      if (window.location.pathname.startsWith('/teacher')) {
+                        navigate('/teacher/profile');
+                      } else {
+                        navigate('/student/profile');
+                      }
+                    }}
+                  >
+                    Profile Settings
+                  </button>
+                  <button 
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-zinc-100 transition-colors flex items-center space-x-2 text-error"
+                  >
+                    <LogOut size={16} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
@@ -86,6 +94,7 @@ Navbar.propTypes = {
   showSidebarToggle: PropTypes.bool,
   title: PropTypes.string,
   className: PropTypes.string,
+  hideUserButton: PropTypes.bool,
 };
 
 // Default props for the component
@@ -94,6 +103,7 @@ Navbar.defaultProps = {
   showSidebarToggle: false,
   title: "SkillSphere",
   className: '',
+  hideUserButton: false,
 };
 
 export default Navbar;

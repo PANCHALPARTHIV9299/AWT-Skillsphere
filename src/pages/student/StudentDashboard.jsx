@@ -23,16 +23,16 @@ const StudentDashboard = () => {
 
   const sidebarItems = [
     { icon: BarChart3, label: 'Overview', path: '/overview' },
-    { icon: User, label: 'Profile', path: '/profile' },
     { icon: BookOpen, label: 'Courses', path: '/courses' },
     { icon: FileText, label: 'Assignments', path: '/assignments' },
     { icon: TrendingUp, label: 'Progress', path: '/progress' },
     { icon: Calendar, label: 'Attendance', path: '/attendance' },
-    { icon: MessageSquare, label: 'Teacher Contacts', path: '/messages' }
+    { icon: MessageSquare, label: 'Teacher Contacts', path: '/messages' },
+    { icon: Calendar, label: 'Events', path: '/events' }
   ];
 
   return (
-    <div className="dashboard-layout bg-gradient-to-br from-surface via-background to-surface/80 min-h-screen">
+    <div className="dashboard-layout bg-background min-h-screen">
       <Sidebar 
         items={sidebarItems}
         collapsed={sidebarCollapsed}
@@ -57,7 +57,7 @@ const StudentDashboard = () => {
         />
         
         <main className="p-4 md:p-6 lg:p-8">
-          <div className="fade-in">
+          <div className="fade-in" style={{ marginTop: '64px' }}>
             <Outlet />
           </div>
         </main>

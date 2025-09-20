@@ -29,12 +29,12 @@ const Register = () => {
   ];
 
   const collegeOptions = [
-    { value: 'stanford', label: 'Stanford University' },
+    { value: 'Changa', label: 'Charusat University' },
     { value: 'mit', label: 'MIT - Massachusetts Institute of Technology' },
-    { value: 'harvard', label: 'Harvard University' },
-    { value: 'berkeley', label: 'UC Berkeley' },
-    { value: 'oxford', label: 'Oxford University' },
-    { value: 'cambridge', label: 'Cambridge University' }
+    { value: 'Ahemdabad', label: 'Nirma University' },
+    { value: 'Ahemdabad', label: 'PDEU' },
+    { value: 'Rajkot', label: 'Darshan University' },
+    { value: 'Ankleshwer', label: 'UPL University' }
   ];
 
   const userTypeOptions = [
@@ -93,11 +93,27 @@ const Register = () => {
 
     setLoading(true);
 
-    // Simulate API call
+    // Save user to localStorage
     setTimeout(() => {
       setLoading(false);
+      // Get existing users
+      const users = localStorage.getItem('registeredUsers');
+      const registeredUsers = users ? JSON.parse(users) : [];
+      // Add new user
+      registeredUsers.push({
+        email: formData.email,
+        password: formData.password,
+        college: formData.college,
+        role: formData.userType,
+        name: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
+        enrollNo: formData.enrollNo,
+        phone: formData.phone,
+        gender: formData.gender,
+        dateOfBirth: formData.dateOfBirth
+      });
+      localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
       navigate('/login');
-    }, 2000);
+    }, 1000);
   };
 
   return (

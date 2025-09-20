@@ -123,7 +123,10 @@ const TeacherCourses = () => {
       {/* Courses Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {courses.map((course) => (
-          <Card key={course.id} className="hover:shadow-lg transition-shadow">
+          <Card
+            key={course.id}
+            className="border-2 border-black shadow-2xl bg-card transition-shadow hover:shadow-dark-xl"
+          >
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
@@ -189,10 +192,10 @@ const TeacherCourses = () => {
       </div>
 
       {/* Recent Activity */}
-      <Card title="Recent Activity">
+  <Card title="Recent Activity" className="border-2 border-black shadow-lg bg-card">
         <div className="space-y-4">
           {recentActivity.map((activity, index) => (
-            <div key={index} className="flex items-start space-x-4 p-3 border rounded-lg">
+            <div key={index} className="flex items-start space-x-4 p-3 border border-border rounded-lg bg-card shadow-sm">
               <div className={`w-2 h-2 rounded-full mt-2 ${
                 activity.type === 'assignment' ? 'bg-blue-500' :
                 activity.type === 'question' ? 'bg-yellow-500' :

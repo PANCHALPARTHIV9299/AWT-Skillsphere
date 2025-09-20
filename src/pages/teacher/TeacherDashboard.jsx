@@ -22,23 +22,23 @@ const TeacherDashboard = () => {
   }, []);
 
   const sidebarItems = [
-    { icon: BarChart3, label: 'Overview', path: '/overview' },
-    { icon: User, label: 'Profile', path: '/profile' },
-    { icon: BookOpen, label: 'Courses', path: '/courses' },
-    { icon: FileText, label: 'Assignments', path: '/assignments' },
-    { icon: Calendar, label: 'Attendance', path: '/attendance' },
-    { icon: Users, label: 'Students', path: '/students' }
+  { icon: BarChart3, label: 'Overview', path: '/overview' },
+  { icon: BookOpen, label: 'Courses', path: '/courses' },
+  { icon: FileText, label: 'Assignments', path: '/assignments' },
+  { icon: Calendar, label: 'Attendance', path: '/attendance' },
+  { icon: Users, label: 'Students', path: '/students' },
+  { icon: Calendar, label: 'Upload Event', path: '/upload-event' }
   ];
 
   return (
-    <div className="dashboard-layout bg-gradient-to-br from-surface via-background to-surface/80 min-h-screen">
+    <div className="dashboard-layout bg-background min-h-screen">
       <Sidebar 
         items={sidebarItems}
         collapsed={sidebarCollapsed}
         basePath="/teacher"
-        className={`responsive-sidebar ${isMobile ? 'shadow-2xl' : ''}`}
+        className={`fixed top-0 left-0 h-screen z-30 responsive-sidebar ${isMobile ? 'shadow-2xl' : ''}`}
       />
-      
+
       {/* Mobile Overlay */}
       {isMobile && !sidebarCollapsed && (
         <div 
@@ -46,15 +46,13 @@ const TeacherDashboard = () => {
           onClick={() => setSidebarCollapsed(true)}
         />
       )}
-      
-      <div className="main-content">
+
+      <div className="main-content" style={{ marginLeft: isMobile ? 0 : 240, marginTop: 72 }}>
         <Navbar 
-          onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-          showSidebarToggle={true}
           title="Teacher Dashboard"
           className="bg-card/90 backdrop-blur-sm border-b border-border/50"
         />
-        
+
         <main className="p-4 md:p-6 lg:p-8">
           <div className="fade-in">
             <Outlet />
