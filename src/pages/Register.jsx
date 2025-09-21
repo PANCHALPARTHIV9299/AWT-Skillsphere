@@ -15,7 +15,6 @@ const Register = () => {
     phone: '',
     gender: '',
     dateOfBirth: '',
-    college: '',
     userType: ''
   });
   const [errors, setErrors] = useState({});
@@ -26,15 +25,6 @@ const Register = () => {
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' }
-  ];
-
-  const collegeOptions = [
-    { value: 'Changa', label: 'Charusat University' },
-    { value: 'mit', label: 'MIT - Massachusetts Institute of Technology' },
-    { value: 'Ahemdabad', label: 'Nirma University' },
-    { value: 'Ahemdabad', label: 'PDEU' },
-    { value: 'Rajkot', label: 'Darshan University' },
-    { value: 'Ankleshwer', label: 'UPL University' }
   ];
 
   const userTypeOptions = [
@@ -79,7 +69,6 @@ const Register = () => {
 
     if (!formData.gender) newErrors.gender = 'Gender is required';
     if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required';
-    if (!formData.college) newErrors.college = 'College selection is required';
     if (!formData.userType) newErrors.userType = 'User type is required';
 
     setErrors(newErrors);
@@ -103,7 +92,6 @@ const Register = () => {
       registeredUsers.push({
         email: formData.email,
         password: formData.password,
-        college: formData.college,
         role: formData.userType,
         name: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
         enrollNo: formData.enrollNo,
@@ -116,49 +104,50 @@ const Register = () => {
     }, 1000);
   };
 
-  return (
-    <div className="page-container py-12">
-      <div className="w-full max-w-10x10 mx-auto">   {/* increased max-width */}
-        <div className="form-container fade-in border-bg-card border border-border shadow-lg p-8 rounded-lg w-full max-w-md">   {/* force full width inside */}
-          <div className="text-center mb-8">
-            <UserPlus className="text-primary mx-auto mb-4" size={48} />
-            <h1 className="text-2xl font-bold mb-2">Create Account</h1>
-            <p className="text-text-secondary">
-              Join SkillSphere and start your learning journey
-            </p>
+return (
+  <div className="page-container py-12">
+    <div className="w-full mx-auto px-4" style={{ maxWidth: '1450px' }}> {/* Significantly increased from 1320px to 1450px - much more noticeable difference */}
+      <div className="form-container fade-in border-bg-card border border-border shadow-lg p-14 rounded-xl w-full" style={{ minHeight: '540px' }}> {/* Also increased padding from p-12 to p-14 and height */}
+        <div className="text-center mb-9"> {/* Slightly increased margin */}
+          <UserPlus className="text-primary mx-auto mb-4" size={50} /> {/* Slightly larger icon */}
+          <h1 className="text-3xl font-bold mb-3">Create Account</h1> 
+          <p className="text-text-secondary text-lg"> 
+            Join SkillSphere and start your learning journey
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-7"> {/* Slightly more spacing */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7"> {/* Slightly increased gap */}
+            <FormInput
+              label="First Name"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              error={errors.firstName}
+              placeholder="Enter first name"
+              required
+            />
+
+            <FormInput
+              label="Middle Name"
+              name="middleName"
+              value={formData.middleName}
+              onChange={handleInputChange}
+              placeholder="Enter middle name"
+            />
+
+            <FormInput
+              label="Last Name"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              error={errors.lastName}
+              placeholder="Enter last name"
+              required
+            />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <FormInput
-                label="First Name"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                error={errors.firstName}
-                placeholder="Enter first name"
-                required
-              />
-
-              <FormInput
-                label="Middle Name"
-                name="middleName"
-                value={formData.middleName}
-                onChange={handleInputChange}
-                placeholder="Enter middle name"
-              />
-
-              <FormInput
-                label="Last Name"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                error={errors.lastName}
-                placeholder="Enter last name"
-                required
-              />
-            </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7"> {/* Slightly increased gap */}
             <FormInput
               label="Email"
               type="email"
@@ -180,64 +169,55 @@ const Register = () => {
               placeholder="Create a password"
               required
             />
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormInput
-                label="Enrollment Number"
-                name="enrollNo"
-                value={formData.enrollNo}
-                onChange={handleInputChange}
-                error={errors.enrollNo}
-                placeholder="Enter enrollment number"
-                required
-              />
-
-              <FormInput
-                label="Phone Number"
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                error={errors.phone}
-                placeholder="Enter phone number"
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormInput
-                label="Gender"
-                type="select"
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                error={errors.gender}
-                options={genderOptions}
-                required
-              />
-
-              <FormInput
-                label="Date of Birth"
-                type="date"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleInputChange}
-                error={errors.dateOfBirth}
-                required
-              />
-            </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7"> {/* Slightly increased gap */}
             <FormInput
-              label="Select College/University"
-              type="select"
-              name="college"
-              value={formData.college}
+              label="Enrollment Number"
+              name="enrollNo"
+              value={formData.enrollNo}
               onChange={handleInputChange}
-              error={errors.college}
-              options={collegeOptions}
+              error={errors.enrollNo}
+              placeholder="Enter enrollment number"
               required
             />
 
+            <FormInput
+              label="Phone Number"
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              error={errors.phone}
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7"> {/* Slightly increased gap */}
+            <FormInput
+              label="Gender"
+              type="select"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              error={errors.gender}
+              options={genderOptions}
+              required
+            />
+
+            <FormInput
+              label="Date of Birth"
+              type="date"
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+              error={errors.dateOfBirth}
+              required
+            />
+          </div>
+
+          <div className="max-w-md mx-auto"> {/* Back to medium width for user type */}
             <FormInput
               label="I am a"
               type="select"
@@ -248,34 +228,34 @@ const Register = () => {
               options={userTypeOptions}
               required
             />
-
-            <Button type="submit" className="w-full" loading={loading}>
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-text-secondary">
-              Already have an account?{' '}
-              <Link to="/login" className="text-primary hover:underline font-medium">
-                Sign in here
-              </Link>
-            </p>
           </div>
 
-          <div className="mt-4 text-center">
-            <Link
-              to="/"
-              className="text-text-muted hover:text-primary transition-colors text-sm"
-            >
-              ← Back to Home
+          <Button type="submit" className="w-full py-4 bg-blue-600 text-white hover:bg-blue-700" loading={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </Button>
+        </form>
+
+        <div className="mt-8 text-center"> {/* Increased margin from mt-6 to mt-8 */}
+          <p className="text-text-secondary">
+            Already have an account?{' '}
+            <Link to="/login" className="text-primary hover:underline font-medium">
+              Sign in here
             </Link>
-          </div>
+          </p>
+        </div>
+
+        <div className="mt-4 text-center">
+          <Link
+            to="/"
+            className="text-text-muted hover:text-primary transition-colors text-sm"
+          >
+            ← Back to Home
+          </Link>
         </div>
       </div>
     </div>
-
-  );
+  </div>
+);
 };
 
 export default Register;

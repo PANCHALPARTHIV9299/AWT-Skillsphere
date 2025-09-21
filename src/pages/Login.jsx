@@ -74,14 +74,13 @@ const Login = () => {
       setLoading(false);
       const registeredUsers = getRegisteredUsers();
       const user = registeredUsers.find(
-        u => u.email === formData.email && u.password === formData.password && u.college === formData.college
+        u => u.email === formData.email && u.password === formData.password
       );
       if (!user) {
         setErrors({ email: 'Invalid credentials or not registered' });
         return;
       }
-      setCurrentUser(user);
-      // Role-based routing
+      // After successful login, route to dashboard based on role
       if (user.role === 'student') {
         navigate('/student');
       } else if (user.role === 'teacher') {
@@ -137,7 +136,7 @@ const Login = () => {
 
           <Button 
             type="submit" 
-            className="w-full" 
+            className="w-full bg-blue-600 text-white hover:bg-blue-700 py-3" 
             loading={loading}
           >
             {loading ? 'Signing in...' : 'Sign In'}

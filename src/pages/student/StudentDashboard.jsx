@@ -59,6 +59,9 @@ const StudentDashboard = () => {
     { icon: Calendar, label: 'Events', path: '/events' }
   ];
 
+  // Get registered domains for filtering
+  const registeredDomains = JSON.parse(localStorage.getItem('studentRegisteredDomains') || '[]');
+
   return (
     <div className="dashboard-layout bg-background min-h-screen">
       <Sidebar
@@ -116,6 +119,15 @@ const StudentDashboard = () => {
                         <span className="font-medium">{domain}</span>
                       </label>
                     ))}
+                    <button
+                      className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700"
+                      onClick={() => {
+                        localStorage.setItem('studentRegisteredDomains', JSON.stringify(selectedDomains));
+                        setShowDomainDropdown(false);
+                      }}
+                    >
+                      Done
+                    </button>
                   </div>
                 )}
               </div>
@@ -123,7 +135,7 @@ const StudentDashboard = () => {
             </div>
             <div className="card bg-card border-2 border-black shadow-2xl p-4 mt-4">
               {/* Pass selectedDomains to children via context or props if needed */}
-              <Outlet context={{ selectedDomains }} />
+              <Outlet context={{ selectedDomains: registeredDomains }} />
             </div>
           </div>
         </main>

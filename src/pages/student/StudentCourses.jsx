@@ -51,6 +51,9 @@ const StudentCourses = () => {
     }
   ];
 
+  const registeredDomains = JSON.parse(localStorage.getItem('studentRegisteredDomains') || '[]');
+  const filteredCourses = courses.filter(course => registeredDomains.some(domain => course.title.toLowerCase().includes(domain.toLowerCase())));
+
   return (
     <div className="fade-in">
       <div className="flex justify-between items-center mb-6">
@@ -59,7 +62,7 @@ const StudentCourses = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {courses.map((course) => (
+        {filteredCourses.map((course) => (
           <Card key={course.id} className="hover:shadow-lg transition-shadow">
             <div className="flex justify-between items-start mb-4">
               <div>

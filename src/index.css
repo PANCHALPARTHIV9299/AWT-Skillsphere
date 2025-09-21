@@ -252,7 +252,7 @@
 
     /* Forms */
     .form-container {
-      max-width: 28rem;
+      max-width: 35rem;
       margin-left: auto;
       margin-right: auto;
       background-color: var(--card);
@@ -710,3 +710,4 @@
       line-height: 1.75rem; /* 28px */
     }
   }
+  

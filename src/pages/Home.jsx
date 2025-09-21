@@ -43,18 +43,18 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar hideUserButton />
-      
+
       {/* Hero Section with Animated Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 animated-bg opacity-20"></div>
         <div className="absolute inset-0 hero-pattern"></div>
-        
-  {/* Floating Elements */}
-  <div className="absolute top-20 left-20 w-20 h-20 bg-primary/40 dark:bg-primary/60 rounded-full floating-element" style={{opacity:0.7}}></div>
-  <div className="absolute top-40 right-32 w-16 h-16 bg-accent/40 dark:bg-accent/60 rounded-full floating-element" style={{animationDelay: '2s', opacity:0.7}}></div>
-  <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-primary/50 dark:bg-primary/70 rounded-full floating-element" style={{animationDelay: '4s', opacity:0.7}}></div>
-        
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-20 h-20 bg-primary/40 dark:bg-primary/60 rounded-full floating-element" style={{ opacity: 0.7 }}></div>
+        <div className="absolute top-40 right-32 w-16 h-16 bg-accent/40 dark:bg-accent/60 rounded-full floating-element" style={{ animationDelay: '2s', opacity: 0.7 }}></div>
+        <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-primary/50 dark:bg-primary/70 rounded-full floating-element" style={{ animationDelay: '4s', opacity: 0.7 }}></div>
+
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <div className="bounce-in">
             <GraduationCap className="mx-auto h-20 w-20 text-primary mb-8 glow-effect" />
@@ -91,13 +91,13 @@ const Home = () => {
               Experience the future of education with our cutting-edge platform
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="gradient-card text-center hover:scale-105 transition-all duration-700 ease-out"
-                style={{animationDelay: feature.delay}}
+                style={{ animationDelay: feature.delay }}
               >
                 <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-text-primary mb-3">
@@ -123,14 +123,14 @@ const Home = () => {
               Join our growing community of learners and educators
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 variant="stat"
                 className="text-center floating-card bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 hover:scale-105 transition-all duration-600 ease-out"
-                style={{animationDelay: `${index * 0.3}s`}}
+                style={{ animationDelay: `${index * 0.3}s` }}
               >
                 <div>
                   <stat.icon className="h-8 w-8 text-primary mx-auto mb-2" />
