@@ -15,21 +15,21 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    college: ''
+    // college: ''
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setCurrentUser, colleges } = useCollege();
+  // const { setCurrentUser, colleges } = useCollege();
 
-  const collegeOptions = [
-    { value: 'Changa', label: 'Charusat University' },
-    { value: 'mit', label: 'MIT - Massachusetts Institute of Technology' },
-    { value: 'Ahemdabad', label: 'Nirma University' },
-    { value: 'Ahemdabad', label: 'PDEU' },
-    { value: 'Rajkot', label: 'Darshan University' },
-    { value: 'Ankleshwer', label: 'UPL University' }
-  ];
+  // const collegeOptions = [
+  //   { value: 'Changa', label: 'Charusat University' },
+  //   { value: 'mit', label: 'MIT - Massachusetts Institute of Technology' },
+  //   { value: 'Ahemdabad', label: 'Nirma University' },
+  //   { value: 'Ahemdabad', label: 'PDEU' },
+  //   { value: 'Rajkot', label: 'Darshan University' },
+  //   { value: 'Ankleshwer', label: 'UPL University' }
+  // ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,9 +54,9 @@ const Login = () => {
       newErrors.password = 'Password must be at least 6 characters';
     }
 
-    if (!formData.college) {
-      newErrors.college = 'College selection is required';
-    }
+    // if (!formData.college) {
+    //   newErrors.college = 'College selection is required';
+    // }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -94,15 +94,15 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center py-12">
-      <div className="form-container fade-in">
-        <div className="text-center mb-8">
+      <div className="form-container fade-in border-bg-card border border-border shadow-lg p-8 rounded-lg w-full max-w-md">
+        <div className="text-center mb-8" >
           <LogIn className="text-primary mx-auto mb-4" size={48} />
           <h1 className="text-2xl font-bold mb-2">Welcome Back</h1>
           <p className="text-text-secondary">Sign in to your SkillSphere account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <FormInput
+          {/* <FormInput
             label="Select College/University"
             type="select"
             name="college"
@@ -111,7 +111,7 @@ const Login = () => {
             error={errors.college}
             options={collegeOptions}
             required
-          />
+          /> */}
 
           <FormInput
             label="Email"

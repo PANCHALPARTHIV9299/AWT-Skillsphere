@@ -56,7 +56,7 @@ const Register = () => {
 
     if (!formData.firstName) newErrors.firstName = 'First name is required';
     if (!formData.lastName) newErrors.lastName = 'Last name is required';
-    
+
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -70,7 +70,7 @@ const Register = () => {
     }
 
     if (!formData.enrollNo) newErrors.enrollNo = 'Enrollment number is required';
-    
+
     if (!formData.phone) {
       newErrors.phone = 'Phone number is required';
     } else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
@@ -88,7 +88,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setLoading(true);
@@ -118,12 +118,14 @@ const Register = () => {
 
   return (
     <div className="page-container py-12">
-      <div className="max-w-2xl mx-auto">
-        <div className="form-container fade-in">
+      <div className="w-full max-w-10x10 mx-auto">   {/* increased max-width */}
+        <div className="form-container fade-in border-bg-card border border-border shadow-lg p-8 rounded-lg w-full max-w-md">   {/* force full width inside */}
           <div className="text-center mb-8">
             <UserPlus className="text-primary mx-auto mb-4" size={48} />
             <h1 className="text-2xl font-bold mb-2">Create Account</h1>
-            <p className="text-text-secondary">Join SkillSphere and start your learning journey</p>
+            <p className="text-text-secondary">
+              Join SkillSphere and start your learning journey
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -137,7 +139,7 @@ const Register = () => {
                 placeholder="Enter first name"
                 required
               />
-              
+
               <FormInput
                 label="Middle Name"
                 name="middleName"
@@ -145,7 +147,7 @@ const Register = () => {
                 onChange={handleInputChange}
                 placeholder="Enter middle name"
               />
-              
+
               <FormInput
                 label="Last Name"
                 name="lastName"
@@ -247,11 +249,7 @@ const Register = () => {
               required
             />
 
-            <Button 
-              type="submit" 
-              className="w-full" 
-              loading={loading}
-            >
+            <Button type="submit" className="w-full" loading={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
@@ -266,13 +264,17 @@ const Register = () => {
           </div>
 
           <div className="mt-4 text-center">
-            <Link to="/" className="text-text-muted hover:text-primary transition-colors text-sm">
+            <Link
+              to="/"
+              className="text-text-muted hover:text-primary transition-colors text-sm"
+            >
               ← Back to Home
             </Link>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 
