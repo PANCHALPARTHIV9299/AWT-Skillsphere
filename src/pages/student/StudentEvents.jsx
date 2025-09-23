@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Calendar, Users, Mic, BookOpen } from 'lucide-react';
+import { fetchSeminars, registerForSeminar } from '../../lib/api';
 
 const eventsData = [
 	{
@@ -49,22 +50,60 @@ const domains = [
 ];
 
 const StudentEvents = () => {
-	const [selectedDomain, setSelectedDomain] = useState('All');
+    const [selectedDomain, setSelectedDomain] = useState('All');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [seminars, setSeminars] = useState([]);
+    const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
 
-	// Merge static and local events
-	const localEvents = (() => {
-		const events = localStorage.getItem('events');
-		return events ? JSON.parse(events) : [];
-	})();
-	const allEvents = [...eventsData, ...localEvents];
+    useEffect(() => {
+        setLoading(true);
+        setError('');
+        fetchSeminars()
+            .then(setSeminars)
+            .catch(err => setError(typeof err === 'string' ? err : err.message))
+            .finally(() => setLoading(false));
+    }, []);
 
-	const registeredDomains = JSON.parse(
-		localStorage.getItem('studentRegisteredDomains') || '[]'
-	);
-	const filteredEvents =
-		registeredDomains.length === 0
-			? allEvents
-			: allEvents.filter(event => registeredDomains.includes(event.domain));
+    const allEvents = useMemo(() => {
+        return seminars.map(s => ({
+            id: s._id,
+            title: s.title,
+            date: new Date(s.date).toISOString().slice(0, 10),
+            domain: s.type === 'workshop' ? 'Workshop' : 'Seminar',
+            type: s.type === 'workshop' ? 'Workshop' : 'Seminar',
+            speaker: s.speaker,
+            description: s.description,
+            venue: s.venue
+        }));
+    }, [seminars]);
+
+    const registeredDomains = JSON.parse(
+        localStorage.getItem('studentRegisteredDomains') || '[]'
+    );
+    const baseFiltered =
+        registeredDomains.length === 0
+            ? allEvents
+            : allEvents.filter(event => registeredDomains.includes(event.domain));
+    const filteredEvents =
+        selectedDomain === 'All'
+            ? baseFiltered
+            : baseFiltered.filter(e => e.domain === selectedDomain);
+
+    async function onRegister(seminarId) {
+        try {
+            if (!userId) {
+                const id = prompt('Enter your userId (temporary)');
+                if (!id) return;
+                setUserId(id);
+                localStorage.setItem('userId', id);
+            }
+            await registerForSeminar({ userId: userId || localStorage.getItem('userId'), seminarId });
+            alert('Registered successfully');
+        } catch (e) {
+            alert('Failed to register: ' + (e?.message || e));
+        }
+    }
 
 	return (
 		<div className="min-h-screen bg-background p-6">
@@ -84,7 +123,13 @@ const StudentEvents = () => {
 					))}
 				</select>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {error && (
+                <div className="text-red-600 mb-4">{error}</div>
+            )}
+            {loading && (
+                <div className="text-text-muted">Loading...</div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{filteredEvents.map(event => (
 					<div
 						key={event.id}
@@ -126,6 +171,12 @@ const StudentEvents = () => {
 								</span>
 							</p>
 						</div>
+                        <button
+                            onClick={() => onRegister(event.id)}
+                            className="mt-4 bg-primary text-white px-4 py-2 rounded"
+                        >
+                            Register
+                        </button>
 					</div>
 				))}
 				{filteredEvents.length === 0 && (

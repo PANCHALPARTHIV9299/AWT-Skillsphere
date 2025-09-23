@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, BookOpen, Mic, Users } from 'lucide-react';
+import { createSeminar } from '../../lib/api';
 
 const domains = [
   'Artificial Intelligence',
@@ -9,35 +10,46 @@ const domains = [
   'Other'
 ];
 
-const types = ['Workshop', 'Expert Talk', 'Seminar'];
+const types = ['Workshop', 'Seminar'];
 
 const TeacherUploadEvent = () => {
   const [form, setForm] = useState({
     title: '',
     date: '',
-    domain: domains[0],
-    type: types[0],
+    time: '',
+    venue: '',
+    capacity: 0,
+    type: 'Seminar',
     speaker: '',
     description: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = e => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    setSubmitted(true);
-    // Store event in localStorage
-    const events = localStorage.getItem('events');
-    const eventsList = events ? JSON.parse(events) : [];
-    eventsList.push({
-      id: Date.now(),
-      ...form
-    });
-    localStorage.setItem('events', JSON.stringify(eventsList));
+    setError('');
+    try {
+      const payload = {
+        title: form.title,
+        description: form.description,
+        date: form.date,
+        time: form.time,
+        speaker: form.speaker,
+        venue: form.venue,
+        capacity: Number(form.capacity) || 0,
+        type: (form.type || 'Seminar').toLowerCase()
+      };
+      await createSeminar(payload);
+      setSubmitted(true);
+    } catch (err) {
+      setError(typeof err === 'string' ? err : err.message || 'Failed to create');
+    }
   };
 
   return (
@@ -71,17 +83,14 @@ const TeacherUploadEvent = () => {
               className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            <select
-              name="domain"
-              value={form.domain}
+            <input
+              type="time"
+              name="time"
+              value={form.time}
               onChange={handleChange}
               className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-            >
-              {domains.map(domain => (
-                <option key={domain} value={domain}>{domain}</option>
-              ))}
-            </select>
+            />
             <select
               name="type"
               value={form.type}
@@ -102,6 +111,15 @@ const TeacherUploadEvent = () => {
               className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+            <input
+              type="text"
+              name="venue"
+              value={form.venue}
+              onChange={handleChange}
+              placeholder="Venue"
+              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
             <textarea
               name="description"
               value={form.description}
@@ -111,6 +129,15 @@ const TeacherUploadEvent = () => {
               rows={4}
               required
             />
+            <input
+              type="number"
+              name="capacity"
+              value={form.capacity}
+              onChange={handleChange}
+              placeholder="Capacity"
+              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {error && <div className="text-red-600">{error}</div>}
             <button
               type="submit"
               onClick={handleSubmit}

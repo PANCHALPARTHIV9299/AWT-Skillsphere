@@ -1,16 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchSeminarsByCreator } from '../../lib/api';
-import CollegeStats from '../../components/CollegeStats';
-
-// const StudentOverview = () => {
-// };
-
-// export default StudentOverview;
 
 const TeacherOverview = () => {
-
-    return <CollegeStats />;
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

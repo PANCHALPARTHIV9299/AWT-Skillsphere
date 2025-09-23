@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Available Seminars/Workshops</h1>
+    <a href="/api/seminars?type=seminar">Seminars</a> | 
+    <a href="/api/seminars?type=workshop">Workshops</a>
+    <ul>
+      <% seminars.forEach(function(item){ %>
+        <li>
+          <a href="/api/seminars/<%= item._id %>"><%= item.title %></a>
+          - <%= new Date(item.date).toLocaleDateString() %> - <%= item.venue %>
+        </li>
+      <% }) %>
+    </ul>
+  </body>
+  </html>
+
+

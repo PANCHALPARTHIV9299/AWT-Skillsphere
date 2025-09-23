@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= seminar.title %></h1>
+    <p><%= seminar.description %></p>
+    <p>Date: <%= new Date(seminar.date).toLocaleString() %></p>
+    <p>Time: <%= seminar.time %></p>
+    <p>Speaker: <%= seminar.speaker %></p>
+    <p>Venue: <%= seminar.venue %></p>
+
+    <form method="post" action="/api/registrations">
+      <input type="hidden" name="seminarId" value="<%= seminar._id %>" />
+      <label>UserId (temp): <input type="text" name="userId" required /></label>
+      <button type="submit">Register</button>
+    </form>
+  </body>
+  </html>
+
+

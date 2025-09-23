@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Pending Events</h1>
+    <table border="1" cellpadding="6" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Speaker</th>
+          <th>Venue</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% seminars.forEach(function(s){ %>
+          <tr>
+            <td><%= s.title %></td>
+            <td><%= new Date(s.date).toLocaleString() %></td>
+            <td><%= s.type %></td>
+            <td><%= s.speaker %></td>
+            <td><%= s.venue %></td>
+            <td>
+              <form action="/api/seminars/admin/<%= s._id %>/approve" method="post" style="display:inline-block">
+                <button type="submit">Approve</button>
+              </form>
+              <form action="/api/seminars/admin/<%= s._id %>/reject" method="post" style="display:inline-block;margin-left:8px;">
+                <button type="submit">Reject</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+  </html>
+
+

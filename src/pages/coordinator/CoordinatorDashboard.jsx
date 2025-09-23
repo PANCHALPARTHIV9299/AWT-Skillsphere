@@ -6,12 +6,13 @@ import Sidebar from '../../components/Sidebar';
 
 const CoordinatorDashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  
 
   const sidebarItems = [
     { icon: BarChart3, label: 'Overview', path: '/overview' },
     { icon: Users, label: 'Users', path: '/users' },
     { icon: BookOpen, label: 'Courses', path: '/courses' },
-    { icon: FileText, label: 'Assignments', path: '/assignments' },
+    // { icon: FileText, label: 'Assignments', path: '/assignments' },
     { icon: Calendar, label: 'Attendance', path: '/attendance' },
     { icon: FileText, label: 'Reports', path: '/reports' },
     { icon: Settings, label: 'Settings', path: '/settings' }

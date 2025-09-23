@@ -24,10 +24,11 @@ const TeacherDashboard = () => {
   const sidebarItems = [
   { icon: BarChart3, label: 'Overview', path: '/overview' },
   { icon: BookOpen, label: 'Courses', path: '/courses' },
-  { icon: FileText, label: 'Assignments', path: '/assignments' },
+  //{ icon: FileText, label: 'Assignments', path: '/assignments' },
   { icon: Calendar, label: 'Attendance', path: '/attendance' },
   { icon: Users, label: 'Students', path: '/students' },
-  { icon: Calendar, label: 'Upload Event', path: '/upload-event' }
+  { icon: Calendar, label: 'Upload Event', path: '/upload-event' },
+  
   ];
 
   return (
