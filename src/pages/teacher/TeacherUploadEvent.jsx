@@ -41,9 +41,9 @@ const TeacherUploadEvent = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-50 flex items-center justify-center p-4 overflow-hidden">
-      <div className="max-w-xl w-full bg-white border-2 border-black shadow-2xl p-8 rounded-lg">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2 justify-center">
+    <div className="h-screen bg-[hsl(var(--background))] dark:bg-[hsl(var(--background))] flex items-center justify-center p-4 overflow-hidden">
+      <div className="max-w-xl w-full bg-[hsl(var(--card))] dark:bg-[hsl(var(--card))] border-2 border-border shadow-2xl p-8 rounded-lg">
+  <h1 className="text-2xl font-bold text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] mb-6 flex items-center gap-2 justify-center">
           <Calendar className="text-blue-600" /> Upload New Event
         </h1>
         {submitted ? (
@@ -60,7 +60,7 @@ const TeacherUploadEvent = () => {
               value={form.title}
               onChange={handleChange}
               placeholder="Event Title"
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
             <input
@@ -68,14 +68,14 @@ const TeacherUploadEvent = () => {
               name="date"
               value={form.date}
               onChange={handleChange}
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
             <select
               name="domain"
               value={form.domain}
               onChange={handleChange}
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
               {domains.map(domain => (
@@ -86,7 +86,7 @@ const TeacherUploadEvent = () => {
               name="type"
               value={form.type}
               onChange={handleChange}
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
               {types.map(type => (
@@ -99,7 +99,7 @@ const TeacherUploadEvent = () => {
               value={form.speaker}
               onChange={handleChange}
               placeholder="Speaker Name"
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
             <textarea
@@ -107,7 +107,7 @@ const TeacherUploadEvent = () => {
               value={form.description}
               onChange={handleChange}
               placeholder="Event Description"
-              className="border border-blue-600 bg-white text-gray-800 w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="border border-border bg-[hsl(var(--input))] dark:bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               rows={4}
               required
             />

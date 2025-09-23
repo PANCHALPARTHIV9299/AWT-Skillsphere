@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-border py-8 mt-12">
+  <footer className="bg-[hsl(var(--card))] dark:bg-[hsl(var(--card))] border-t border-border py-8 mt-12">
       <div className="content-container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-border mt-8 pt-6 text-center text-text-secondary">
+  <div className="border-t border-border mt-8 pt-6 text-center text-text-secondary dark:text-text-secondary">
           <p>&copy; 2024 SkillSphere. All rights reserved.</p>
         </div>
       </div>

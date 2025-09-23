@@ -14,7 +14,7 @@ const FormInput = forwardRef(
         {type === 'select' && options ? (
           <select
             id={inputId}
-            className={`form-select border-white ${error ? 'border-error' : ''} ${className}`}
+            className={`form-select border border-border bg-[hsl(var(--input))] text-[hsl(var(--foreground))] dark:bg-[hsl(var(--input))] dark:text-[hsl(var(--foreground))] ${error ? 'border-error' : ''} ${className}`}
             ref={ref}
             {...props}
           >
