@@ -93,7 +93,7 @@ const StudentDashboard = () => {
               <h2 className="text-2xl font-bold text-primary ml-6">Select Domains</h2>
               <div className="relative">
                 <button
-                  className="bg-white border-2 border-black shadow-lg px-15 py-3 rounded-lg flex items-center gap-1 text-primary font-medium w-full "
+                  className="bg-[hsl(var(--card))] dark:bg-[hsl(var(--card))] border-2 border-border shadow-lg px-15 py-3 rounded-lg flex items-center gap-1 text-primary font-medium w-full "
                   style={{ minWidth: '220px', maxWidth: '100%' }}
                   onClick={() => setShowDomainDropdown(v => !v)}
                 >
@@ -103,11 +103,11 @@ const StudentDashboard = () => {
                   <span className="ml-2">▼</span>
                 </button>
                 {showDomainDropdown && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white border-2 border-black shadow-xl p-4 z-50 rounded-lg">
+                  <div className="absolute left-0 mt-2 w-64 bg-[hsl(var(--card))] dark:bg-[hsl(var(--card))] border-2 border-border shadow-xl p-4 z-50 rounded-lg">
                     {allDomains.map(domain => (
                       <label
                         key={domain}
-                        className="flex items-center gap-2 cursor-pointer text-primary mb-2 rounded hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-2 cursor-pointer text-primary mb-2 rounded hover:bg-[hsl(var(--card-hover))] dark:hover:bg-[hsl(var(--card-hover))] transition-colors"
                         style={{ padding: '0.5rem' }}
                       >
                         <input
@@ -116,7 +116,7 @@ const StudentDashboard = () => {
                           onChange={() => handleDomainChange(domain)}
                           className="accent-primary w-5 h-5 rounded border border-primary focus:ring-2 focus:ring-primary"
                         />
-                        <span className="font-medium">{domain}</span>
+                        <span className="font-medium text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))]">{domain}</span>
                       </label>
                     ))}
                     <button

@@ -57,10 +57,10 @@ const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className, hideUser
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-black rounded-lg shadow-lg z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-[hsl(var(--card))] dark:bg-[hsl(var(--card))] border border-border rounded-lg shadow-lg z-50">
                 <div className="py-2">
                   <button 
-                    className="w-full text-left px-4 py-2 rounded hover:bg-gray-100 transition-colors"
+                    className="w-full text-left px-4 py-2 rounded hover:bg-[hsl(var(--card-hover))] dark:hover:bg-[hsl(var(--card-hover))] text-[hsl(var(--foreground))] dark:text-[hsl(var(--foreground))] transition-colors"
                     onClick={() => {
                       if (window.location.pathname.startsWith('/teacher')) {
                         navigate('/teacher/profile');
@@ -73,7 +73,7 @@ const Navbar = ({ onToggleSidebar, showSidebarToggle, title, className, hideUser
                   </button>
                   <button 
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 rounded hover:bg-gray-100 transition-colors flex items-center space-x-2 text-error"
+                    className="w-full text-left px-4 py-2 rounded hover:bg-[hsl(var(--card-hover))] dark:hover:bg-[hsl(var(--card-hover))] text-error flex items-center space-x-2 transition-colors"
                   >
                     <LogOut size={16} />
                     <span>Logout</span>

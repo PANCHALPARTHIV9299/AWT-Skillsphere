@@ -25,7 +25,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-text-secondary">
-              <p>Email: info@skillsphere.edu</p>
+              <p>Email: info@skillsphere.edu.in</p>
               <p>Phone: +1 (555) 123-4567</p>
               <p>Address: 123 Education St, Learning City</p>
             </div>

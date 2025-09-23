@@ -35,12 +35,7 @@ const CollegeStats = () => {
   // Mock data - in real app, this would come from an API based on college
   const getStatsForCollege = () => {
     const baseStats = {
-      stanford: { students: 2150, teachers: 89, courses: 156, completion: 94 },
-      mit: { students: 1890, teachers: 76, courses: 142, completion: 96 },
-      harvard: { students: 2340, teachers: 95, courses: 168, completion: 93 },
-      berkeley: { students: 3200, teachers: 124, courses: 189, completion: 91 },
-      oxford: { students: 1650, teachers: 67, courses: 134, completion: 95 },
-      cambridge: { students: 1580, teachers: 63, courses: 128, completion: 97 }
+      stanford: { students: 21, teachers: 8, courses: 15, completion: 86 }
     };
 
     const collegeId = currentUser?.college?.id || 'stanford';
@@ -54,7 +49,7 @@ const CollegeStats = () => {
       icon: Users,
       title: 'Total Students',
       value: stats.students.toLocaleString(),
-      change: '+8.2%',
+      change: '+1.2%',
       changeType: 'positive',
       color: '#3b82f6'
     },
@@ -70,7 +65,7 @@ const CollegeStats = () => {
       icon: BookOpen,
       title: 'Active Courses',
       value: stats.courses.toString(),
-      change: '+12.5%',
+      change: '+2.5%',
       changeType: 'positive',
       color: '#f59e0b'
     },
